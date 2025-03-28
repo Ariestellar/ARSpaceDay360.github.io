@@ -84,24 +84,30 @@
       <source src="poem.mp3" type="audio/mp3">
       Ваш браузер не поддерживает элемент audio.
     </audio>
-		<script type="module" src="./main.js"></script>		
     <script>
       let fade = document.getElementById('fade');
       let backButton = document.getElementById("backButton");
-      let spaceAudio = document.getElementById("spaceAudio");
-      let poemAudio = document.getElementById("poemAudio");
-
-      spaceAudio.volume = 0.2;
-      poemAudio.volume = 0.5;
-
-      starWarsText.classList.add("animate-text");
-      spaceAudio.play();
-      setTimeout(() => { poemAudio.play();}, 3000);
+      //starWarsText.classList.add("animate-text");
 
       backButton.addEventListener("click", () => {
           fade.style.opacity = 1;
           setTimeout(() => {window.location.href = 'index.html';}, 1000);
       });
+
+      document.addEventListener("click", () => {
+        let spaceAudio = document.getElementById("spaceAudio");
+        let poemAudio = document.getElementById("poemAudio");
+        starWarsText.classList.add("animate-text");
+        
+        spaceAudio.volume = 0.2;
+        poemAudio.volume = 0.5;
+
+        spaceAudio.play();
+        setTimeout(() => { poemAudio.play();}, 3000);
+      }, { once: true });
+
+      
   </script>
+  <script type="module" src="./main.js"></script>	
 	</body>
 </html>

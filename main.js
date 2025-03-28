@@ -32,7 +32,7 @@ const loader = new GLTFLoader();
 loader.load(
 	'./scene.glb',
 	function (gltf) {
-		scene.add(gltf.scene);
+		scene.add(gltf.scene);        
 		// Добавляем все объекты модели в массив для проверки пересечений
 		gltf.scene.traverse(function (child) {
 			if (child instanceof THREE.Mesh) {
@@ -54,13 +54,9 @@ loader.load(
 
         // Как только страница загружена, начинаем плавное появление сцены
         setTimeout(() => {
-            fade.style.opacity = 1; // Прозрачность исчезает
-            setTimeout(() => {
-                fade.style.opacity = 0; // Сцена становится видимой
-            }, 100); // Плавное появление через короткую задержку
-        }, 1000);  // Немного подождать, чтобы затемнение исчезло
-
-
+            fade.style.opacity = 1;
+            setTimeout(() => { fade.style.opacity = 0;}, 100);
+        }, 1000);
 	},	
 	function (xhr) {
 		console.log((xhr.loaded / xhr.total * 100) + '% loaded');
