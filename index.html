@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>360 сцене</title>
+		<style>
+      body { margin: 0; overflow: hidden; }
+      #backButton {
+          position: absolute;
+          top: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          padding: 10px 20px;
+          font-size: 18px;
+          background: #007BFF;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          z-index: 10;
+      }
+      #fade {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 1;
+            pointer-events: none;
+            transition: opacity 1s ease-in-out;
+            z-index: 100;
+        }
+        /* Анимация текста Star Wars */
+        @keyframes starWarsCrawl {
+            0% { transform: perspective(300px) rotateX(20deg) translateY(70vh) scale(1.5); opacity: 1; }
+            100% { transform: perspective(300px) rotateX(25deg) translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        #starWarsText {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            font-size: 24px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            opacity: 0;
+            transform-origin: 50% 100%;
+            transform: perspective(300px) rotateX(45deg) translateY(100vh) scale(1.5);
+            transition: opacity 1s, transform 5s linear;
+        }
+        .animate-text {
+            animation: starWarsCrawl 45s linear forwards;
+        }
+		</style>
+	</head>
+	<body>
+    <div id="fade"></div>
+    <button id="backButton">Вернуться в AR</button>
+    <div id="starWarsText">
+      Ах, этот день двенадцатый апреля,<br>
+      Как он пронёсся по людским сердцам.<br>
+      Казалось, мир невольно стал добрее,<br>
+      Своей победой потрясенный сам.<br><br>
+      
+      Какой гремел он музыкой вселенской,<br>
+      Тот праздник, в пестром пламени знамён,<br>
+      Когда безвестный сын земли смоленской<br>
+      Землёй-планетой был усыновлён.<br><br>
+      
+      Жилец Земли, геройский этот малый<br>
+      В космической посудине своей<br>
+      По круговой, вовеки небывалой,<br>
+      В пучинах неба вымахнул над ней...
+  </div>
+     <!-- Добавление аудио -->
+     <audio id="spaceAudio" loop autoplay>
+      <source src="space-sound.mp3" type="audio/mp3">
+      Ваш браузер не поддерживает элемент audio.
+    </audio>
+
+    <!-- Вторая аудиодорожка -->
+    <audio id="poemAudio">
+      <source src="poem.mp3" type="audio/mp3">
+      Ваш браузер не поддерживает элемент audio.
+    </audio>
+		<script type="module" src="./main.js"></script>		
+    <script>
+      let fade = document.getElementById('fade');
+      let backButton = document.getElementById("backButton");
+      let spaceAudio = document.getElementById("spaceAudio");
+      let poemAudio = document.getElementById("poemAudio");
+
+      spaceAudio.volume = 0.2;
+      poemAudio.volume = 0.5;
+
+      starWarsText.classList.add("animate-text");
+      spaceAudio.play();
+      setTimeout(() => { poemAudio.play();}, 3000);
+
+      backButton.addEventListener("click", () => {
+          fade.style.opacity = 1;
+          setTimeout(() => {window.location.href = 'index.html';}, 1000);
+      });
+  </script>
+	</body>
+</html>
