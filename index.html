@@ -53,7 +53,7 @@
             animation: starWarsCrawl 45s linear forwards;
         }
 		</style>
-		<script type="module" crossorigin src="./assets/index-cg6WS1L6.js"></script>
+		<script type="module" crossorigin src="./assets/index-BzRWLLIf.js"></script>
 	</head>
 	<body>
     <div id="fade"></div>
@@ -104,7 +104,11 @@
         setTimeout(() => { poemAudio.play();}, 3000);
       }, { once: true });
 
-      
+      window.addEventListener("load", () => {
+        setTimeout(() => { fade.style.opacity = 1;
+            setTimeout(() => { fade.style.opacity = 0; }, 100);
+        }, 1000);
+      });
   </script>
 	
 	</body>
