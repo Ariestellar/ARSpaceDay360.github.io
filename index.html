@@ -5,6 +5,20 @@
 		<title>360 сцене</title>
 		<style>
       body { margin: 0; overflow: hidden; }
+      #okButton {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 15px 30px;
+          font-size: 20px;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          z-index: 101;
+      }
       #backButton {
           position: absolute;
           top: 20px;
@@ -53,11 +67,12 @@
             animation: starWarsCrawl 45s linear forwards;
         }
 		</style>
-		<script type="module" crossorigin src="./assets/index-BzRWLLIf.js"></script>
+		<script type="module" crossorigin src="./assets/index-b0MLVKbN.js"></script>
 	</head>
 	<body>
     <div id="fade"></div>
-    <button id="backButton">Вернуться в AR</button>
+    <!-- <button id="backButton">Вернуться в AR</button> -->
+    <button id="okButton">ОК</button>
     <div id="starWarsText">
       Ах, этот день двенадцатый апреля,<br>
       Как он пронёсся по людским сердцам.<br>
@@ -88,13 +103,13 @@
     <script>
       let fade = document.getElementById('fade');
       let backButton = document.getElementById("backButton");
+      let okButton = document.getElementById("okButton");
 
-      backButton.addEventListener("click", () => {
-          fade.style.opacity = 1;
-          setTimeout(() => {window.location.href = 'https://ariestellar.github.io/ARSpaceDay/';}, 1000);
-      });
-
-      document.addEventListener("click", () => {
+      okButton.addEventListener("click", () => {
+        okButton.style.display = 'none';
+        setTimeout(() => { fade.style.opacity = 1;
+            setTimeout(() => { fade.style.opacity = 0; }, 100);
+        }, 1000);
         let spaceAudio = document.getElementById("spaceAudio");
         let poemAudio = document.getElementById("poemAudio");
         starWarsText.classList.add("animate-text");
@@ -102,14 +117,7 @@
         poemAudio.volume = 0.5;
         spaceAudio.play();
         setTimeout(() => { poemAudio.play();}, 3000);
-      }, { once: true });
-
-      window.addEventListener("load", () => {
-        setTimeout(() => { fade.style.opacity = 1;
-            setTimeout(() => { fade.style.opacity = 0; }, 100);
-        }, 1000);
       });
   </script>
-	
 	</body>
 </html>
