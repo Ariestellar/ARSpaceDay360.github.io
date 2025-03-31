@@ -5,34 +5,19 @@
 		<title>360 сцене</title>
 		<style>
       body { margin: 0; overflow: hidden; }
-      #okButton {
+      #soundButton {
           position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          padding: 15px 30px;
-          font-size: 20px;
+          top: 10px;
+          right: 10px;
+          padding: 10px 20px;
+          font-size: 18px;
           background-color: #28a745;
           color: white;
           border: none;
           border-radius: 5px;
           cursor: pointer;
           z-index: 101;
-      }
-      #backButton {
-          position: absolute;
-          top: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          padding: 10px 20px;
-          font-size: 18px;
-          background: #007BFF;
-          color: white;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          z-index: 10;
-      }
+        }
       #fade {
             position: absolute;
             top: 0;
@@ -71,8 +56,7 @@
 	</head>
 	<body>
     <div id="fade"></div>
-    <!-- <button id="backButton">Вернуться в AR</button> -->
-    <button id="okButton">ОК</button>
+    <button id="soundButton">Включить звук</button>
     <div id="starWarsText">
       Ах, этот день двенадцатый апреля,<br>
       Как он пронёсся по людским сердцам.<br>
@@ -103,13 +87,15 @@
     <script>
       let fade = document.getElementById('fade');
       let backButton = document.getElementById("backButton");
-      let okButton = document.getElementById("okButton");
+      let soundButton = document.getElementById("soundButton");
 
-      okButton.addEventListener("click", () => {
-        okButton.style.display = 'none';
+    window.onload = () => {
         setTimeout(() => { fade.style.opacity = 1;
-            setTimeout(() => { fade.style.opacity = 0; }, 100);
-        }, 1000);
+        setTimeout(() => { fade.style.opacity = 0; }, 100);}, 1000);
+    };
+
+    soundButton.addEventListener("click", () => {
+        soundButton.style.display = 'none';    
         let spaceAudio = document.getElementById("spaceAudio");
         let poemAudio = document.getElementById("poemAudio");
         starWarsText.classList.add("animate-text");
@@ -117,7 +103,7 @@
         poemAudio.volume = 0.5;
         spaceAudio.play();
         setTimeout(() => { poemAudio.play();}, 3000);
-      });
+    });
   </script>
 	</body>
 </html>
